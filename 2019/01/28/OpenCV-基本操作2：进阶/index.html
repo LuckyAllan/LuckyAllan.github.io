@@ -167,6 +167,20 @@
               </span>
 
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/01/28/OpenCV-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C2%EF%BC%9A%E8%BF%9B%E9%98%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/01/28/OpenCV-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C2%EF%BC%9A%E8%BF%9B%E9%98%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -234,6 +248,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -384,6 +399,19 @@
   
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el         : '#valine-comments',
+      path       : location.pathname,
+    }, {"enable":true,"appId":"4Rh9DOyl71D8P5xvsdwubu07-MdYXbMMI","appKey":"E3JRXCFg6SKR0rUEbmFxdHOS","placeholder":"请在此输入您的留言","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>
