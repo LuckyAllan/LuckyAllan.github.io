@@ -20,15 +20,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+  <meta name="description" content="简介本文是我SecureCRT的使用心得和记录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SecureCRT的使用">
+<meta property="og:url" content="http://yoursite.com/2017/08/07/SecureCRT%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="简介本文是我SecureCRT的使用心得和记录。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2018/08/07/5b68e60ae4be5.png">
+<meta property="article:published_time" content="2017-08-07T00:10:42.000Z">
+<meta property="article:modified_time" content="2019-11-17T09:53:19.000Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2018/08/07/5b68e60ae4be5.png">
 
-<link rel="canonical" href="http://yoursite.com/archives/2020/">
+<link rel="canonical" href="http://yoursite.com/2017/08/07/SecureCRT%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
 
 <script id="page-configurations">
@@ -36,12 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Archive | Hexo</title>
+  <title>SecureCRT的使用 | Hexo</title>
   
 
 
@@ -121,50 +127,94 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 1 post. Keep on posting.</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/07/SecureCRT%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SecureCRT的使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-08-07 08:10:42" itemprop="dateCreated datePublished" datetime="2017-08-07T08:10:42+08:00">2017-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-17 17:53:19" itemprop="dateModified" datetime="2019-11-17T17:53:19+08:00">2019-11-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文是我SecureCRT的使用心得和记录。</p>
+<a id="more"></a>
+
+<h1 id="1-使用SecureCRT登录时报错"><a href="#1-使用SecureCRT登录时报错" class="headerlink" title="1 使用SecureCRT登录时报错"></a>1 使用SecureCRT登录时报错</h1><p>我新建了一个Linux账号，在使用SecureCRT登陆的时候发现出错，错误信息为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The server has disconnected with an error.  Server message reads:</span><br><span class="line">A protocol error occurred. Change of username or service not allowed: (pma_etl,ssh-connection) -&gt; (etl,ssh-connection)</span><br></pre></td></tr></table></figure>
+
+<p>很显然，这个报错说我不允许修改账户，由于之前用另一个账户登录，如果没有出错，会被SecureCRT记录下来了因此需要重新设置：</p>
+<img src="https://i.loli.net/2018/08/07/5b68e60ae4be5.png" alt="Snip20180807_2.png" title="Snip20180807_2.png" />
+
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-31T18:33:48+08:00"
-              content="2020-05-31">
-          05-31
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/05/31/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/07/23/centOS%E5%B0%8F%E6%8A%80%E5%B7%A7/" rel="prev" title="centOS小技巧">
+      <i class="fa fa-chevron-left"></i> centOS小技巧
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/08/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E8%A1%A5%E7%A0%81/" rel="next" title="计算机为什么要用补码">
+      计算机为什么要用补码 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
-
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -217,6 +267,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-使用SecureCRT登录时报错"><span class="nav-number">2.</span> <span class="nav-text">1 使用SecureCRT登录时报错</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -229,9 +280,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
       </div>
   </nav>
 </div>

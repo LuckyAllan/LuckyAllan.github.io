@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="简介static关键字是一个非常重要的关键字，本文将对这一关键字进行详细的介绍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言中static的作用">
+<meta property="og:url" content="http://yoursite.com/2017/08/22/C%E8%AF%AD%E8%A8%80%E4%B8%ADstatic%E7%9A%84%E4%BD%9C%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="简介static关键字是一个非常重要的关键字，本文将对这一关键字进行详细的介绍。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2018/08/23/5b7e1bbeaed09.png">
+<meta property="og:image" content="https://i.loli.net/2018/08/23/5b7e1ad76ee86.png">
+<meta property="og:image" content="https://i.loli.net/2018/08/23/5b7e17b21ea4a.png">
+<meta property="og:image" content="https://i.loli.net/2018/08/22/5b7d8053538e9.png">
+<meta property="og:image" content="https://i.loli.net/2018/08/23/5b7e16338b348.png">
+<meta property="article:published_time" content="2017-08-22T13:49:47.000Z">
+<meta property="article:modified_time" content="2019-11-17T09:51:05.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2018/08/23/5b7e1bbeaed09.png">
+
+<link rel="canonical" href="http://yoursite.com/2017/08/22/C%E8%AF%AD%E8%A8%80%E4%B8%ADstatic%E7%9A%84%E4%BD%9C%E7%94%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>C语言中static的作用 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/C%E8%AF%AD%E8%A8%80%E4%B8%ADstatic%E7%9A%84%E4%BD%9C%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C语言中static的作用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-08-22 21:49:47" itemprop="dateCreated datePublished" datetime="2017-08-22T21:49:47+08:00">2017-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-17 17:51:05" itemprop="dateModified" datetime="2019-11-17T17:51:05+08:00">2019-11-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>static关键字是一个非常重要的关键字，本文将对这一关键字进行详细的介绍。</p>
+<a id="more"></a>
+
+<h1 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h1><p>更新：2018-08-23<br>首版：2017-08-22<br>博主：allan<br>声明：转载请注明出处，禁止商业用途！</p>
+<h1 id="1-综述"><a href="#1-综述" class="headerlink" title="1 综述"></a>1 综述</h1><p>术语static有着不寻常的历史。起初，在C中引入关键字static是为了表示退出一个块后仍然存在的局部变量。随后，static在C中有了第二种含义：用来表示不能被其它文件访问的全局变量和函数。为了避免引入新的关键字，所以仍使用static关键字来表示这第二种含义。最后，C++重用了这个关键字，并赋予它与前面不同的第三种含义：表示属于一个类而不是属于此类的任何特定对象的变量和函数(与Java中此关键字的含义相同)。</p>
+<p>当用于不同的上下文环境时，static关键字具有不同的意思，下面我根据我查阅到的资料尽可能的简单描述。static关键字一般用于三个地方，即：</p>
+<ol>
+<li>作用于函数定义</li>
+<li>作用于代码块之外的变量声明</li>
+<li>作用于代码块内部的变量声明</li>
+</ol>
+<h1 id="2-static的作用"><a href="#2-static的作用" class="headerlink" title="2 static的作用"></a>2 static的作用</h1><p>static的作用有两个，即：</p>
+<ol>
+<li>改变作用域</li>
+<li>改变存储区域</li>
+</ol>
+<h1 id="1-1-改变作用域"><a href="#1-1-改变作用域" class="headerlink" title="1.1 改变作用域"></a>1.1 改变作用域</h1><p>我们知道，在实际项目中不会只有一个文件，一般会有多个<code>.c</code>或<code>.h</code>文件，当我们同时编译多个文件时，所有未加static前缀的全局变量和函数都具有全局可见性，也就是说，我们通过extern关键字能够在其他地方引用。我们举个例子，新建两个源文件:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[study@centos<span class="number">-7</span> example]$ touch main.c</span><br><span class="line">[study@centos<span class="number">-7</span> example]$ touch test.c</span><br></pre></td></tr></table></figure>
+
+<p>test.c的内容为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> a = <span class="string">'A'</span>; <span class="comment">// global variable</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">msg</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"msg---%c---msg\n"</span>, a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello\n"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>main.c的内容为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">msg</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;    </span><br><span class="line">    <span class="keyword">extern</span> <span class="keyword">char</span> a;    <span class="comment">// extern variable must be declared before use</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"main---%c---main\n"</span>, a);</span><br><span class="line">    (<span class="keyword">void</span>)msg();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译后运行结果如下所示：</p>
+<img src="https://i.loli.net/2018/08/23/5b7e1bbeaed09.png" alt="image-20170823102800392.png" title="image-20170823102800392.png" />
+
+<p>由此可见，通过外部引用extern，在test.c中定义的全局变量a和函数msg能够在main.c中使用。如果加了static，就改变了作用域。</p>
+<h3 id="2-1-1-修饰函数"><a href="#2-1-1-修饰函数" class="headerlink" title="2.1.1 修饰函数"></a>2.1.1 修饰函数</h3><p>我们对上面的例子稍作修改，修改test.c中的代码为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> a = <span class="string">'A'</span>; <span class="comment">// global variable</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">msg</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%c\n"</span>, a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello\n"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>main.c中的文件不变，我们在编译的时候报错，如下所示：</p>
+<img src="https://i.loli.net/2018/08/23/5b7e1ad76ee86.png" alt="image-20170823102406943.png" title="image-20170823102406943.png" />
+
+<p>该信息表示，在main.c中没有定义msg，也就是说找不到这个函数。也就是说，即使我们使用extern来做修饰，依旧无法使用函数msg。因此，static的作用是：<strong>在文件（模块）内，一个被声明为静态的函数只可被这个文件（模块）内的其他函数调用，即使这个函数被extern声明过了</strong>。</p>
+<p>这样做有什么意义呢？意义还是挺大的，比如我们在写接口的时候，有些函数我们只希望在该文件内被调用，为了防止其他人使用extern调用或恰好重名，我们可以使用static来进行修饰，从而降低耦合度。</p>
+<h3 id="2-1-2-修饰全局变量"><a href="#2-1-2-修饰全局变量" class="headerlink" title="2.1.2 修饰全局变量"></a>2.1.2 修饰全局变量</h3><p>我们继续对上面的例子作修改，修改test.c中的代码为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">char</span> a = <span class="string">'A'</span>; <span class="comment">// global variable</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">msg</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%c\n"</span>, a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello\n"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>main.c中的文件不变，我们在编译的时候报错，如下所示：</p>
+<img src="https://i.loli.net/2018/08/23/5b7e17b21ea4a.png" alt="image-20170823101038192.png" title="image-20170823101038192.png" />
+
+<p>从上面我们可以看到，static的作用是：<strong>在文件（模块）内，一个被声明为静态的全局只可被这个文件（模块）内的其他函数调用，即使这个变量被extern声明过了</strong>。</p>
+<h2 id="1-2-改变存储区域"><a href="#1-2-改变存储区域" class="headerlink" title="1.2 改变存储区域"></a>1.2 改变存储区域</h2><p>我们知道，局部变量储存在堆中，全局变量储存在静态存储区，而存储在静态存储区的变量会在程序刚运行时久完成初始化，也是唯一的一次初始化。<strong>实际上，共有两种变量存储在静态存储区：全局变量和static变量</strong>。因此，静态局部变量和全局变量一样，知道程序运行结束后才会释放。</p>
+<p>我们新建test2.c，内容如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">10</span>;    <span class="comment">// 事实上此赋值语句从来没有执行过</span></span><br><span class="line">    <span class="keyword">return</span> count--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"global\t\tlocal static\n"</span>);</span><br><span class="line">    <span class="keyword">for</span>(; count &lt;= <span class="number">10</span>; ++count)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\t\t%d\n"</span>, count, fun());    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译后运行结果如下：</p>
+<img src="https://i.loli.net/2018/08/22/5b7d8053538e9.png" alt="image-20170822232446305.png" title="image-20170822232446305.png" />
+
+
+
+<p>在静态存储区，内存中所有的字节默认值都是0x00，因此，static修饰的局部变量和全局变量一样，默认初始化为0。我们来验证一下，新建test3.c，其中的内容为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> str[<span class="number">10</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"integer: %d;  string: (begin)%s(end)\n"</span>, a, str);</span><br><span class="line">    <span class="keyword">for</span>(; i &lt;= <span class="keyword">sizeof</span>(str[<span class="number">10</span>]); ++i)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\r"</span>, str[i]);   </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);   </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译后运行结果如下：</p>
+<img src="https://i.loli.net/2018/08/23/5b7e16338b348.png" alt="image-20170823100416254.png" title="image-20170823100416254.png" />
+
+<p>因此，我们可以知道static关键字的作用：<strong>改变局部变量的存储区域</strong>。因此带来了如下变化：</p>
+<ul>
+<li>延长了局部变量的生命周期，知道程序运行结束后才释放</li>
+<li>如果没有初始化，会自动初始化为0x00</li>
+</ul>
+<h1 id="3-static声明的函数和变量小结"><a href="#3-static声明的函数和变量小结" class="headerlink" title="3 static声明的函数和变量小结"></a>3 static声明的函数和变量小结</h1><p>1、若全局变量仅在单个<code>.c</code>文件中访问，可以将这个变量修改为静态全局变量，以降低模块间的耦合度。</p>
+<p>2、若全局变量仅由单个函数访问，则可以将这个变量改为该函数的静态局部变量，以降低模块间的耦合度。</p>
+<p>3、设计或使用动态全局变量、静态全局变量、静态局部变量，需要考虑重入问题；（什么意思？）</p>
+<p>4、如果我们需要一个可重入的函数，那么，我们一定哟啊避免函数中使用static变量（这样的函数被称为：带“内部存储器”功能的函数）</p>
+<p>5、函数中必须要使用static变量的情况：如果当某个函数的返回值为指针类型时，则必须时static的局部变量的地址作为返回值，若为auto类型，则返回为错指针</p>
+<p>6、函数前加static使得函数成为静态函数。但此处“static”的含义不是指存储方式，而是指对函数的作用域仅局限于本文件(所以又称内部函数)。使用内部函数的好处是：不同的人编写不同的函数时，不用担心自己定义的函数，是否会与其它文件中的函数同名。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>1、《C和指针》，人民邮电出版社。</p>
+<p>2、《<a href="https://blog.csdn.net/jinzhichaoshuiping/article/details/50485320" target="_blank" rel="noopener">c语言中static的作用(精辟分析</a>)》</p>
+<p>3、《<a href="https://www.cnblogs.com/kira2will/p/3947111.html" target="_blank" rel="noopener">华为 1.static有什么用途？（请至少说明两种）</a>》</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/08/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E8%A1%A5%E7%A0%81/" rel="prev" title="计算机为什么要用补码">
+      <i class="fa fa-chevron-left"></i> 计算机为什么要用补码
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/08/24/sizeof()%E5%92%8Cstrlen/" rel="next" title="sizeof()和strlen">
+      sizeof()和strlen <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版权声明"><span class="nav-number">2.</span> <span class="nav-text">版权声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-综述"><span class="nav-number">3.</span> <span class="nav-text">1 综述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-static的作用"><span class="nav-number">4.</span> <span class="nav-text">2 static的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-1-改变作用域"><span class="nav-number">5.</span> <span class="nav-text">1.1 改变作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-修饰函数"><span class="nav-number">5.0.1.</span> <span class="nav-text">2.1.1 修饰函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-修饰全局变量"><span class="nav-number">5.0.2.</span> <span class="nav-text">2.1.2 修饰全局变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-改变存储区域"><span class="nav-number">5.1.</span> <span class="nav-text">1.2 改变存储区域</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-static声明的函数和变量小结"><span class="nav-number">6.</span> <span class="nav-text">3 static声明的函数和变量小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">7.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
