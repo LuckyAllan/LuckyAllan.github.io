@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh_CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -20,22 +20,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="简介本文将会学习core组件，重点学习OpenCV的数据结构与基本的绘图，比如，常用的数据结构、基本绘图操作、多种格式化输出方法等。">
+  <meta name="description" content="简介本文是我日常使用的一个小记录，是Linux／CentOS的使用心得。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[OpenCV]数据结构与基本绘图（core组件入门）">
-<meta property="og:url" content="http://yoursite.com/2019/02/09/OpenCV-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%BB%98%E5%9B%BE%EF%BC%88core%E7%BB%84%E4%BB%B6%E5%85%A5%E9%97%A8%EF%BC%89/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="简介本文将会学习core组件，重点学习OpenCV的数据结构与基本的绘图，比如，常用的数据结构、基本绘图操作、多种格式化输出方法等。">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6gy1g95yzkf7pwj309q0693yr.jpg">
-<meta property="article:published_time" content="2019-02-09T12:04:38.000Z">
-<meta property="article:modified_time" content="2019-12-14T13:42:14.000Z">
-<meta property="article:author" content="John Doe">
-<meta property="article:tag" content="OpenCV">
+<meta property="og:title" content="centOS小技巧">
+<meta property="og:url" content="http://yoursite.com/posts/50677.html/index.html">
+<meta property="og:site_name" content="MyStudyTown">
+<meta property="og:description" content="简介本文是我日常使用的一个小记录，是Linux／CentOS的使用心得。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-07-23T14:49:32.000Z">
+<meta property="article:modified_time" content="2020-06-02T14:12:07.000Z">
+<meta property="article:author" content="Vivian">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/006y8mN6gy1g95yzkf7pwj309q0693yr.jpg">
 
-<link rel="canonical" href="http://yoursite.com/2019/02/09/OpenCV-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%BB%98%E5%9B%BE%EF%BC%88core%E7%BB%84%E4%BB%B6%E5%85%A5%E9%97%A8%EF%BC%89/">
+<link rel="canonical" href="http://yoursite.com/posts/50677.html/">
 
 
 <script id="page-configurations">
@@ -44,11 +41,11 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'en'
+    lang   : 'zh_CN'
   };
 </script>
 
-  <title>[OpenCV]数据结构与基本绘图（core组件入门） | Hexo</title>
+  <title>centOS小技巧 | MyStudyTown</title>
   
 
 
@@ -99,7 +96,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Hexo</h1>
+      <h1 class="site-title">MyStudyTown</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -148,21 +145,21 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/09/OpenCV-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%BB%98%E5%9B%BE%EF%BC%88core%E7%BB%84%E4%BB%B6%E5%85%A5%E9%97%A8%EF%BC%89/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh_CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/50677.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
+      <meta itemprop="name" content="Vivian">
+      <meta itemprop="description" content="Think Diffrent">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="MyStudyTown">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [OpenCV]数据结构与基本绘图（core组件入门）
+          centOS小技巧
         </h1>
 
         <div class="post-meta">
@@ -172,18 +169,18 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-02-09 20:04:38" itemprop="dateCreated datePublished" datetime="2019-02-09T20:04:38+08:00">2019-02-09</time>
+              <time title="Created: 2016-07-23 22:49:32" itemprop="dateCreated datePublished" datetime="2016-07-23T22:49:32+08:00">2016-07-23</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-14 21:42:14" itemprop="dateModified" datetime="2019-12-14T21:42:14+08:00">2019-12-14</time>
+                <time title="Modified: 2020-06-02 22:12:07" itemprop="dateModified" datetime="2020-06-02T22:12:07+08:00">2020-06-02</time>
               </span>
 
           
-            <span id="/2019/02/09/OpenCV-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%BB%98%E5%9B%BE%EF%BC%88core%E7%BB%84%E4%BB%B6%E5%85%A5%E9%97%A8%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="[OpenCV]数据结构与基本绘图（core组件入门）" title="Views">
+            <span id="/posts/50677.html/" class="post-meta-item leancloud_visitors" data-flag-title="centOS小技巧" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -198,8 +195,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/02/09/OpenCV-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%BB%98%E5%9B%BE%EF%BC%88core%E7%BB%84%E4%BB%B6%E5%85%A5%E9%97%A8%EF%BC%89/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/02/09/OpenCV-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%BB%98%E5%9B%BE%EF%BC%88core%E7%BB%84%E4%BB%B6%E5%85%A5%E9%97%A8%EF%BC%89/" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/50677.html/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/50677.html/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -214,36 +211,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文将会学习core组件，重点学习OpenCV的数据结构与基本的绘图，比如，常用的数据结构、基本绘图操作、多种格式化输出方法等。</p>
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文是我日常使用的一个小记录，是Linux／CentOS的使用心得。</p>
 <a id="more"></a>
 
-<h1 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h1><blockquote>
-<p id="div-border-left-blue">状态：持续更新
-更新：<font color=red><strong>2019-10-19</strong></font>
-项目：修改排版，更改图片
-</p>
 
-<p id="div-border-left-blue">首版：2019-02-09
-博主：小易
-声明：转载请注明出处，禁止商业用途！
-</p>
-</blockquote>
-<h1 id="1-正文"><a href="#1-正文" class="headerlink" title="1 正文"></a>1 正文</h1><h2 id="1-1-Mat"><a href="#1-1-Mat" class="headerlink" title="1.1 Mat"></a>1.1 Mat</h2><p>我们使用手机拍照的时候，在屏幕上将看到真实而漂亮的图像，但是在手机（数字设备）中，记录的却是图像中的每个点的数值，如下图所示：</p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g95yzkf7pwj309q0693yr.jpg" alt="A matrix of the mirror of a car"></p>
-<p>上图中，汽车后视镜中的区域，在数字设备中就是一个包含众多强度值的像素点矩阵（矩阵是图像在数字设备中的表现形式），OpenCV中使用Mat类来表示它。</p>
-<h2 id="1-1-1-Mat对象基础"><a href="#1-1-1-Mat对象基础" class="headerlink" title="1.1.1 Mat对象基础"></a>1.1.1 Mat对象基础</h2><p>Mat是一个类，由两部分组成：<br>• 矩阵头：矩阵尺寸、存储方法、存储地址等信息。<br>• 矩阵：一个指向存储所有像素值的矩阵。</p>
-<p>矩阵头的尺寸是常数值，但是矩阵本身的尺寸会根据图像的大小改变，通常比矩阵头的尺寸大数个数量级，因此，挡在程序中传递图像并创建副本时，大的开销是由矩阵（而不是信息头）造成的。因此，<strong>除非万不得已，不应该进行大图像的复制</strong>。为了解决这个问题，OpenCV让每个Mat对象有自己的信息头，但是共享一个矩阵（即让矩阵指针指向同一个地址），而拷贝构造函数只复制信息头和矩阵指针！</p>
-<p>我们来看一段代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Mat A, C;								<span class="comment">// 仅创建信息头部分</span></span><br><span class="line">A =imread(<span class="string">"1.jpg"</span>);			<span class="comment">// 为矩阵开辟内存</span></span><br><span class="line"><span class="function">Mat <span class="title">B</span><span class="params">(A)</span></span>;								<span class="comment">// 使用拷贝构造函数</span></span><br><span class="line">C = A;									<span class="comment">// 赋值运算符</span></span><br></pre></td></tr></table></figure>
 
-<p>上面代码中，虽然有是那个Mat对象，但是只有一个矩阵。</p>
-<p id="div-border-top-green">由于矩阵属于多个Mat对象，因此最后一个使用它的对象来负责清理。我们无论什么时候复制一个Mat队形的信息头，都会增加矩阵的引用次数，反之，当一个头背释放后，这个技术被减1，直至为零被清除。</p>
-如果我们却是需要同时复制矩阵本身（即完整的复制信息头、矩阵指针和矩阵），可以使用如下连个函数：
-• clone()
-• copyTo()
+<h1 id="修改用户密码"><a href="#修改用户密码" class="headerlink" title="修改用户密码"></a>修改用户密码</h1><p>##一般用户</p>
+<p>使用 <code>passwd</code> 命令可以用来修改用户密码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ passwd1</span><br></pre></td></tr></table></figure>
 
-<p>本小结有4个要点：<br>• OpenCV中，如果不特别指定的话，函数中输出图像的内存分配时自动完成的。<br>• 使用OpenCV的C++接口时不需要考虑内存释放的问题。<br>• 赋值运算符和靠背构造函数（构造函数）只复制信息头。<br>• 使用函数clone()copyTo()来复制一副图像的矩阵。</p>
-<h2 id="1-2-基本图形绘制"><a href="#1-2-基本图形绘制" class="headerlink" title="1.2 基本图形绘制"></a>1.2 基本图形绘制</h2>
+<p>输入以上命令后回车，即可直接输入旧密码以及新密码，修改当前用户的密码。</p>
+<p>##root用户</p>
+<p>对于<code>root</code>用户来说，可以直接修改其他用户的密码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ passwd &lt;user_name&gt;1</span><br></pre></td></tr></table></figure>
+
+<p>回车后直接输入新密码即可。</p>
+<h1 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su UserName</span><br></pre></td></tr></table></figure>
+
+<p>注：上面的<code>su</code>是<code>switch user</code>的缩写。</p>
+
     </div>
 
     
@@ -257,12 +243,12 @@
   <div id="qr" style="display: none;">
       
       <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="John Doe WeChat Pay">
+        <img src="/images/wechatpay.png" alt="Vivian WeChat Pay">
         <p>WeChat Pay</p>
       </div>
       
       <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="John Doe Alipay">
+        <img src="/images/alipay.png" alt="Vivian Alipay">
         <p>Alipay</p>
       </div>
 
@@ -271,20 +257,17 @@
 
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/OpenCV/" rel="tag"># OpenCV</a>
-          </div>
 
         
 
 
         
     <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2019/01/28/OpenCV-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C2%EF%BC%9A%E8%BF%9B%E9%98%B6/" rel="prev" title="OpenCV-基本操作2：进阶">
-      <i class="fa fa-chevron-left"></i> OpenCV-基本操作2：进阶
-    </a></div>
       <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/posts/43158.html/" rel="next" title="SecureCRT的使用">
+      SecureCRT的使用 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -344,14 +327,14 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版权声明"><span class="nav-number">2.</span> <span class="nav-text">版权声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-正文"><span class="nav-number">3.</span> <span class="nav-text">1 正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Mat"><span class="nav-number">3.1.</span> <span class="nav-text">1.1 Mat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-1-Mat对象基础"><span class="nav-number">3.2.</span> <span class="nav-text">1.1.1 Mat对象基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-基本图形绘制"><span class="nav-number">3.3.</span> <span class="nav-text">1.2 基本图形绘制</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改用户密码"><span class="nav-number">2.</span> <span class="nav-text">修改用户密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#切换用户"><span class="nav-number">3.</span> <span class="nav-text">切换用户</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
-  <div class="site-description" itemprop="description"></div>
+  <p class="site-author-name" itemprop="name">Vivian</p>
+  <div class="site-description" itemprop="description">Think Diffrent</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -393,7 +376,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Vivian</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
