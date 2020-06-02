@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="简介本文将以简单的方式来介绍OpenCV中图像的加载、修改、显示、保存。阅读完本文，您将能对图片进行简单的操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[OpenCV]基本操作1：入门">
+<meta property="og:url" content="http://yoursite.com/posts/48432.html/index.html">
+<meta property="og:site_name" content="MyStudyTown">
+<meta property="og:description" content="简介本文将以简单的方式来介绍OpenCV中图像的加载、修改、显示、保存。阅读完本文，您将能对图片进行简单的操作。">
+<meta property="article:published_time" content="2019-01-21T10:09:04.000Z">
+<meta property="article:modified_time" content="2020-06-02T14:12:07.000Z">
+<meta property="article:author" content="Vivian">
+<meta property="article:tag" content="OpenCV">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/posts/48432.html/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>[OpenCV]基本操作1：入门 | MyStudyTown</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MyStudyTown</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a>
+
+  </li>
+        <li class="menu-item menu-item-hot">
+
+    <a href="/hot/" rel="section"><i class="signal fa-fw"></i>热度排行</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/48432.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vivian">
+      <meta itemprop="description" content="Think Diffrent">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MyStudyTown">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [OpenCV]基本操作1：入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-01-21 18:09:04" itemprop="dateCreated datePublished" datetime="2019-01-21T18:09:04+08:00">2019-01-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-02 22:12:07" itemprop="dateModified" datetime="2020-06-02T22:12:07+08:00">2020-06-02</time>
+              </span>
+
+          
+            <span id="/posts/48432.html/" class="post-meta-item leancloud_visitors" data-flag-title="[OpenCV]基本操作1：入门" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/posts/48432.html/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/48432.html/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文将以简单的方式来介绍OpenCV中图像的加载、修改、显示、保存。阅读完本文，您将能对图片进行简单的操作。</p>
+<a id="more"></a>
+
+<h1 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h1><blockquote>
+<p id="div-border-left-blue">状态：持续更新
+  更新：<font color=red><strong>2019-10-19</strong></font>
+  项目：修改排版
+</p>
+
+<p id="div-border-left-blue">首版：2019-01-21
+  博主：小易
+  声明：转载请注明出处，禁止商业用途！
+</p>
+</blockquote>
+<h1 id="1-正文"><a href="#1-正文" class="headerlink" title="1 正文"></a>1 正文</h1><p>在OpenCV中我们最常见的操作有三种，即：</p>
+<ul>
+<li>加载图像：<code>cv::imread</code></li>
+<li>显示图像：<code>cv::imshow</code></li>
+<li>保存图像：<code>cv::imwrite</code></li>
+</ul>
+<p>下面我们以一个例子来进行说明。</p>
+<h2 id="1-1-举例"><a href="#1-1-举例" class="headerlink" title="1.1 举例"></a>1.1 举例</h2><p>首先我们来看一个简单的例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cv::Mat src = cv::imread(<span class="string">"../../images/gm.jpg"</span>);</span><br><span class="line">    <span class="keyword">if</span>(!src.data)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"[OpenCV] read image faild!"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cv::imshow(<span class="string">"srcImage"</span>, src);</span><br><span class="line">    cv::imwrite(<span class="string">"./test.jpg"</span>, src);</span><br><span class="line"></span><br><span class="line">    cv::waitKey(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面我们来解析一下代码：</p>
+<ul>
+<li>第5行，加载图像，见<a href="#1.2 ` cv::imread`">1.2 <code>cv::imread</code></a>。</li>
+<li>第6～10行，加载失败的打印。</li>
+<li>第11行，显示图像，见<a href="#1.3 `cv::imshow`">1.3 <code>cv::imshow</code></a>。</li>
+<li>第12行，保存图片，见<a href="#1.4 ` cv::imwrite`">1.4 <code>cv::imwrite</code></a>。</li>
+<li>第14行，为了防止图片一闪而过无法看到现象，添加一个按键阻塞（如果我们不添加，可以根据是否保存了test.jpg来判断函数的执行）。</li>
+</ul>
+<h2 id="1-2-cv-imread"><a href="#1-2-cv-imread" class="headerlink" title="1.2 cv::imread"></a>1.2 cv::imread</h2><p><strong>函数作用</strong>：加载图像文件，生成一个Mat对象<br><strong>函数原型</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CV_EXPORTS_W Mat <span class="title">imread</span><span class="params">( <span class="keyword">const</span> String&amp; filename, </span></span></span><br><span class="line"><span class="function"><span class="params">                        <span class="keyword">int</span> flags = IMREAD_COLOR )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>函数参数</strong>：</p>
+<ul>
+<li>const String&amp; filename：需要载入的图像文件名</li>
+<li>int flags = IMREAD_COLOR：载入标识，加载的图像是什么（颜色）类型。常见三种类型，<ul>
+<li>IMREAD_UNCHANGED  ( = -1 )：加载原图，不做任何改变</li>
+<li>IMREAD_GRAYSCALE     ( = 0  )：将原图作为灰度图像加载进来</li>
+<li>IMREAD_COLOR             ( = 1  )：把原图作为RGB图像加载进来</li>
+</ul>
+</li>
+</ul>
+<p><strong>返回值</strong>：Mat对象</p>
+<p id="div-border-top-green"><strong>关于参数1</strong>:
+  可以是png、jpg、bmp等各种常见的图片格式。
+  <strong>关于参数2</strong>:
+  1、如果有冲突的标志，将采用较小的数值
+  2、若不在枚举中取固定的值，可以分为：
+  • 大于0（返回一个三通道的彩色图像）
+  • 等于0（返回灰度图像）
+  • 小于0（返回包含Alpha通道的加载图像）。
+  3、根据第二条可知，输出的图像默认不返回Alpha通道，若想要载入Alpha通道，需要取负值。flags取1999和取1的效果是一样的。
+</p>
+
+<p id="div-border-top-red">如果以彩色模式载入图像，解码后的图像会以BGR（蓝、绿、红）的通道顺序进行存储！</p>
+## 1.3 cv::imshow
+
+<p><strong>函数作用</strong>：在指定的名称的窗口中显示一幅图像<br><strong>函数原型</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CV_EXPORTS <span class="keyword">void</span> <span class="title">imshow</span><span class="params">(<span class="keyword">const</span> String&amp; winname, </span></span></span><br><span class="line"><span class="function"><span class="params">                       <span class="keyword">const</span> ogl::Texture2D&amp; tex)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>函数参数</strong>：</p>
+<ul>
+<li>const String&amp; winname：需要显示的窗口名称</li>
+<li>const ogl::Texture2D&amp; tex：Mat对象，即需要显示的图像</li>
+</ul>
+<p><strong>返回值</strong>：<code>void</code></p>
+<p id="div-border-top-green">imshow缩放图像，取决于函数的深度:
+  • 载入8-bit unsigned：显示图像本来的样子。
+  • 载入16-bit unsgined或32-bit integer：使用像素值除以256，即值范围是[0, 256 x 256]映射到[0,255]。
+  • 载入32-bit floating-point：像素值乘以255，即该值的范围是[0,1]映射到[0,255]。
+</p>
+
+<h2 id="1-4-cv-imwrite"><a href="#1-4-cv-imwrite" class="headerlink" title="1.4  cv::imwrite"></a>1.4  cv::imwrite</h2><p><strong>函数作用</strong>：保存图像文件到指定路径。<br><strong>函数原型</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CV_EXPORTS_W <span class="keyword">bool</span> <span class="title">imwrite</span><span class="params">(<span class="keyword">const</span> String&amp; filename, </span></span></span><br><span class="line"><span class="function"><span class="params">                          InputArray img,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; params = <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;())</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>函数参数</strong>：</p>
+<ul>
+<li>const String&amp; filename：需要写入的文件名（需要加上文件后缀）</li>
+<li>InputArray img：需要写的图像数据</li>
+<li>const std::vector&lt;int&gt;&amp; params = std::vector&lt;int&gt;()：特定格式保存编码，一般不填写。</li>
+</ul>
+<p><strong>返回值</strong>：</p>
+<p id="div-border-top-green">关于第三个参数:
+  • 对于JPEG格式图片，这个参数表示从0到100的图片质量，默认值为95。
+  • 对于PNG格式的图片，这个参数表示压缩级别，从0到9，较高意味着更小的尺寸和更长的压缩时间，默认为3。保存PNG格式的时候可以保存透明通道的图片。
+  • 对于PPM、PMG、PBM格式的图片，这个参数表示一个二进制格式标识（取值为0或1），默认时1。
+</p>
+
+<p id="div-border-top-yellow">只有8位、16位的PNG、JPG、Tiff文件格式而且是单通道或三通道的BGR图像才可以通过这种方式保存</p>
+# 2 总结
+
+<p>本文内容非常少，旨在新建一个正常的OpenCV程序，核心函数清单：</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>用途</th>
+<th>讲解章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>imread</td>
+<td>加载图片</td>
+<td><a href="#1.2 ` cv::imread`">1.2 <code>cv::imread</code></a></td>
+</tr>
+<tr>
+<td>imshow</td>
+<td>显示图片</td>
+<td><a href="#1.3 `cv::imshow`">1.3 <code>cv::imshow</code></a></td>
+</tr>
+<tr>
+<td>imwrite</td>
+<td>保存图片</td>
+<td><a href="#1.4 ` cv::imwrite`">1.4 <code>cv::imwrite</code></a></td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>如果您觉得不错，请我坐趟公交吧^_^</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Vivian WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Vivian Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OpenCV/" rel="tag"># OpenCV</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/64343.html/" rel="prev" title="IP地址、子网掩码、网管、DNS都是啥？">
+      <i class="fa fa-chevron-left"></i> IP地址、子网掩码、网管、DNS都是啥？
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/27795.html/" rel="next" title="OpenCV-基本操作2：进阶">
+      OpenCV-基本操作2：进阶 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版权声明"><span class="nav-number">2.</span> <span class="nav-text">版权声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-正文"><span class="nav-number">3.</span> <span class="nav-text">1 正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-举例"><span class="nav-number">3.1.</span> <span class="nav-text">1.1 举例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-cv-imread"><span class="nav-number">3.2.</span> <span class="nav-text">1.2 cv::imread</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-cv-imwrite"><span class="nav-number">3.3.</span> <span class="nav-text">1.4  cv::imwrite</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vivian</p>
+  <div class="site-description" itemprop="description">Think Diffrent</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vivian</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el         : '#valine-comments',
+      path       : location.pathname,
+    }, {"enable":true,"appId":"4Rh9DOyl71D8P5xvsdwubu07-MdYXbMMI","appKey":"E3JRXCFg6SKR0rUEbmFxdHOS","placeholder":"记得填上邮箱哦！这样我回复后，你的邮箱就可以收到通知啦！","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":true,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

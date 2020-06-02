@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="简介本文将以简单的方式来介绍IP地址、子网掩码、网管、DNS都是啥。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IP地址、子网掩码、网管、DNS都是啥？">
+<meta property="og:url" content="http://yoursite.com/posts/64343.html/index.html">
+<meta property="og:site_name" content="MyStudyTown">
+<meta property="og:description" content="简介本文将以简单的方式来介绍IP地址、子网掩码、网管、DNS都是啥。">
+<meta property="og:image" content="https://i.loli.net/2018/08/28/5b856270e6c22.png">
+<meta property="article:published_time" content="2018-06-16T13:48:42.000Z">
+<meta property="article:modified_time" content="2020-06-02T14:12:07.000Z">
+<meta property="article:author" content="Vivian">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2018/08/28/5b856270e6c22.png">
+
+<link rel="canonical" href="http://yoursite.com/posts/64343.html/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>IP地址、子网掩码、网管、DNS都是啥？ | MyStudyTown</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MyStudyTown</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a>
+
+  </li>
+        <li class="menu-item menu-item-hot">
+
+    <a href="/hot/" rel="section"><i class="signal fa-fw"></i>热度排行</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/64343.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vivian">
+      <meta itemprop="description" content="Think Diffrent">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MyStudyTown">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IP地址、子网掩码、网管、DNS都是啥？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-06-16 21:48:42" itemprop="dateCreated datePublished" datetime="2018-06-16T21:48:42+08:00">2018-06-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-02 22:12:07" itemprop="dateModified" datetime="2020-06-02T22:12:07+08:00">2020-06-02</time>
+              </span>
+
+          
+            <span id="/posts/64343.html/" class="post-meta-item leancloud_visitors" data-flag-title="IP地址、子网掩码、网管、DNS都是啥？" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/posts/64343.html/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/64343.html/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文将以简单的方式来介绍IP地址、子网掩码、网管、DNS都是啥。</p>
+<a id="more"></a>
+
+<h1 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h1><p>更新：2018-08-23<br>首版：2018-06-16<br>博主：allan<br>声明：转载请注明出处，禁止商业用途！</p>
+<h1 id="1-综述"><a href="#1-综述" class="headerlink" title="1 综述"></a>1 综述</h1><p>本文对几个常见的概念进程通俗的介绍。</p>
+<h1 id="2-介绍"><a href="#2-介绍" class="headerlink" title="2 介绍"></a>2 介绍</h1><p>不管是学习网络还是使用电脑上网，IP地址我们或多或少都会接触，下图是CentOS的网络情况：</p>
+<p>上图中出现了IP地址、子网掩码、默认网关、DNS服务器等，只有正确设置（当然，我们的DHCP服务器已经设置好了，我们一般不需要手动设置），网络才能通，那么这些名词是什么意思呢？下面我们进行逐步的介绍。</p>
+<p>在介绍之前，我们用生活中的例子来说明。如图2所示，住在光谷大道的用户要能找到对方，必须各自有一个门牌号，这个门牌号就是各家地址，门牌号的表示方法是：“光谷大道+XX号”。假如1号住户要找6号住户，过程是这样的：1号在大街上喊了一声：”谁是6号,请回答。”，这时光谷大道的住户都听到了，但只有6号作了回答，这个喊的过程叫”广播”，<strong>光谷大道的所有用户就是他的广播范围</strong>，假如光谷大道共有20个用户，那广播地址就是：光谷大道 21号。也就是说，光谷大道的任何一个用户喊一声能让”广播地址-1”个用户听到. </p>
+<img src="https://i.loli.net/2018/08/28/5b856270e6c22.png" alt="image-20180828225518427.png" title="image-20180828225518427.png" />
+
+<p>从上面的例子中我们可以进行对比学习：</p>
+<table>
+<thead>
+<tr>
+<th>街道</th>
+<th>网络</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>街道地址：光谷大道。比如光谷大道0号</td>
+<td>网络地址：比如192.168.100.0</td>
+</tr>
+<tr>
+<td>住户的号：如1号，2号</td>
+<td>主机地址：比如0.0·0.1</td>
+</tr>
+<tr>
+<td>住户地址：比如光谷大道1号</td>
+<td>IP地址：网络地址+主机地址=192.168.100.1</td>
+</tr>
+<tr>
+<td>广播地址：最后一个住户的地址+1，此例为光谷大道21号</td>
+<td>广播地址：192.168.100.255</td>
+</tr>
+</tbody></table>
+<p>如上表格克制，在Internet网络中，每个上网的计算机都可以对应为一个住户，住户地址就是IP地址，是分配给网络设备的门牌号。那么上表网络中的这些地址是如何计算出来的呢？为什么计算这些地址呢？要想知道这些，需要明白一个道理，学习网络的目的就是如何让网络中的计算机互相通讯，我们应该围绕这个来学习。</p>
+<p><strong>注：</strong>192.168.100.1是私有地址，是不能直接在Internet网络中应用的，上Internnet需要转位公有地址，后面会有介绍。</p>
+<h2 id="2-1-IP地址"><a href="#2-1-IP地址" class="headerlink" title="2.1 IP地址"></a>2.1 IP地址</h2><p>电脑之间要实现网络通信，就必须要有一个（合法的ip）地址。<strong>IP地址=网络地址+主机地址，（又称：主机号和网络号组成）</strong>ip地址的结构使我们可以在Internet上很方便的寻址。ip地址通常用更直观的，以圆点分隔号的四个十进制数字表示，每个数字从0到255，如某一台主机的ip地址为：128.20.4.1。<strong>在局域网里，同样也需要ip地址，一般内网的ip地址是以192.168开头的，这样很容易区分公网和内网的ip地址</strong>。</p>
+<h2 id="2-2-子网掩码"><a href="#2-2-子网掩码" class="headerlink" title="2.2 子网掩码"></a>2.2 子网掩码</h2><p>子网掩码是用来判断任意两台计算机的ip地址是否属于同一子网络的根据。最为简单的理解就是两台计算机各自的ip地址与子网掩码进行and运算后，得出的结果是相同的，则说明这两台计算机是处于同一个子网络上的，可以进行直接的通讯。</p>
+<h2 id="2-3-网关"><a href="#2-3-网关" class="headerlink" title="2.3 网关"></a>2.3 网关</h2><h2 id="2-4-默认网关"><a href="#2-4-默认网关" class="headerlink" title="2.4 默认网关"></a>2.4 默认网关</h2><p>参考文献</p>
+<p>1、《<a href="http://vod.sjtu.edu.cn/help/Article_Print.asp?ArticleID=584" target="_blank" rel="noopener">IP地址含义知多少</a>》</p>
+<p>2、《<a href="https://www.cnblogs.com/songQQ/archive/2009/05/27/1490612.html" target="_blank" rel="noopener">IP地址，子网掩码、默认网关，DNS服务器是什么意思?</a>》</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>如果您觉得不错，请我坐趟公交吧^_^</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Vivian WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Vivian Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/59664.html/" rel="prev" title="sizeof()和strlen">
+      <i class="fa fa-chevron-left"></i> sizeof()和strlen
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/48432.html/" rel="next" title="[OpenCV]基本操作1：入门">
+      [OpenCV]基本操作1：入门 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版权声明"><span class="nav-number">2.</span> <span class="nav-text">版权声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-综述"><span class="nav-number">3.</span> <span class="nav-text">1 综述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-介绍"><span class="nav-number">4.</span> <span class="nav-text">2 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-IP地址"><span class="nav-number">4.1.</span> <span class="nav-text">2.1 IP地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-子网掩码"><span class="nav-number">4.2.</span> <span class="nav-text">2.2 子网掩码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-网关"><span class="nav-number">4.3.</span> <span class="nav-text">2.3 网关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-默认网关"><span class="nav-number">4.4.</span> <span class="nav-text">2.4 默认网关</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vivian</p>
+  <div class="site-description" itemprop="description">Think Diffrent</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vivian</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el         : '#valine-comments',
+      path       : location.pathname,
+    }, {"enable":true,"appId":"4Rh9DOyl71D8P5xvsdwubu07-MdYXbMMI","appKey":"E3JRXCFg6SKR0rUEbmFxdHOS","placeholder":"记得填上邮箱哦！这样我回复后，你的邮箱就可以收到通知啦！","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":true,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
